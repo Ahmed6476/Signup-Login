@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react"
 import axios from 'axios';
-
+import { Row, Col } from 'react-bootstrap'
 import { Formik, Field, Form, useFormik } from "formik";
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+// import input from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import * as yup from 'yup';
 import { baseUrl } from "./../../core"
@@ -13,11 +13,14 @@ import {
     Route,
     Link,
     useHistory,
-  } from "react-router-dom";
-  
+} from "react-router-dom";
+import './index.css'
 
 const validationSchema = yup.object({
     name: yup
+        .string('Enter your name')
+        .required('Name is required'),
+        address: yup
         .string('Enter your name')
         .required('Name is required'),
     email: yup
@@ -37,6 +40,7 @@ function Signup() {
         validationSchema: validationSchema,
         initialValues: {
             name: '',
+            address: '',
             email: '',
             password: '',
         },
@@ -45,74 +49,86 @@ function Signup() {
                 name: values.name,
                 email: values.email,
                 password: values.password,
+                address : values.address
             })
                 .then((res) => {
                     console.log("res: ", res.data);
-                    if(values.email){
+                    if (values.email) {
                         history.push("/login")
-                      }
+                    }
                 })
         }
     });
 
     return (
-        <div style={{ margin: "2rem" }}>
+        <div className='center' style={{ margin: "2rem" }}>
             <h1>Signup page</h1>
 
-            <form onSubmit={formik.handleSubmit}>
-                <Stack spacing={2}>
+            <div className='main_div'>
+                <form onSubmit={formik.handleSubmit}>
+                    <Stack spacing={0}>
 
-                    <TextField
-                        fullWidth
-                        color="primary"
-                        id="outlined-basic"
-                        label="Full Name"
-                        variant="outlined"
+                        <div className="form-group">
+                            <input
+                                name="name"
+                                value={formik.values.name}
+                                onChange={formik.handleChange}
 
-                        name="name"
-                        value={formik.values.name}
-                        onChange={formik.handleChange}
+                                error={formik.touched.name && Boolean(formik.errors.name)}
+                                helperText={formik.touched.name && formik.errors.name}
+                            /><span></span>
+                            <label>UserName</label>
+                        </div>
 
-                        error={formik.touched.name && Boolean(formik.errors.name)}
-                        helperText={formik.touched.name && formik.errors.name}
-                    />
+                        <div className="form-group">
 
-                    <TextField
-                        fullWidth
-                        color="primary"
-                        id="outlined-basic"
-                        label="Email"
-                        variant="outlined"
+                            <input
 
-                        name="email"
-                        value={formik.values.email}
-                        onChange={formik.handleChange}
+                                name="address"
+                                value={formik.values.address}
+                                onChange={formik.handleChange}
 
-                        error={formik.touched.email && Boolean(formik.errors.email)}
-                        helperText={formik.touched.email && formik.errors.email}
-                    />
+                                error={formik.touched.address && Boolean(formik.errors.address)}
+                                helperText={formik.touched.address && formik.errors.address}
+                            />
+                            <span></span>
+                            <label>Address</label>
+                        </div>
+                        <div className="form-group">
+                            <input
 
-                    <TextField
-                        fullWidth
-                        color="primary"
-                        id="filled-basic"
-                        label="Password"
-                        variant="outlined"
-                        type="password"
+                                name="email"
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
 
-                        name="password"
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={formik.touched.email && formik.errors.email}
+                            />
+                            <span></span>
+                            <label >Email</label>
+                        </div>
 
-                        error={formik.touched.password && Boolean(formik.errors.password)}
-                        helperText={formik.touched.password && formik.errors.password}
-                    />
+                        <div className="form-group">
 
-                    <Button fullWidth variant="contained" color="primary" type="submit">Signup</Button>
-                </Stack>
+                            <input
+                                type="password"
 
-            </form>
+                                name="password"
+                                value={formik.values.password}
+                                onChange={formik.handleChange}
 
+                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                helperText={formik.touched.password && formik.errors.password}
+                            />
+                            <span></span>
+                            <label>Password</label>
+                        </div>
+                        <button className='button'>Signup</button>
+
+                    </Stack>
+                </form>
+
+            </div>
         </div>
     );
 }

@@ -53,11 +53,11 @@ app.post('/api/v1/login', async (req, res) => {
 })
 app.post('/api/v1/signup', async (req, res) => {
     try {
-    const  {name, email, password} = req.body;
+    const  {name,address, email, password} = req.body;
 
     if (!email ||
         !password ||
-        !name ) {
+        !name || !address) {
         console.log("required field missing");
         return res.status(403).json({error: "required field missing"});
          } 
@@ -67,7 +67,7 @@ app.post('/api/v1/signup', async (req, res) => {
             return res.status(420).json({error:"Email Already exists"});
         }
 
-        const user = new User({name,email,password})
+        const user = new User({name,address,email,password})
 
         // await user.save();
          await user.save(() => {
