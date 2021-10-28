@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const User = require('./userSchema');
 const bcrypt = require('bcryptjs');
-mongoose.connect('mongodb+srv://Ahmed_678:Samsung123@cluster0.gxwhy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://ahmed672:Samsung123@cluster0.f1scc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
 
 
@@ -72,7 +72,7 @@ app.post('/api/v1/signup', async (req, res) => {
         // await user.save();
          await user.save(() => {
             console.log("data saved")
-            res.send('profile created')
+            // res.send('profile created')
         })
         res.status(201).json({message: "user registered successfully"});
 
