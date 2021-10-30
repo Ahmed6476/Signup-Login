@@ -13,8 +13,8 @@ mongoose.connect('mongodb+srv://ahmed672:Samsung123@cluster0.f1scc.mongodb.net/m
 app.use(cors(["localhost:5000", "localhost:3000"]))
 app.use(express.json())
 app.use('/', express.static(path.join(__dirname, 'web/build')))
-app.use('/login', express.static(path.join(__dirname, 'web/build')))
 app.use('/signup', express.static(path.join(__dirname, 'web/build')))
+app.use('/dashborad', express.static(path.join(__dirname, 'web/build')))
 
 
 app.get("/**", (req, res, next) => {
@@ -132,6 +132,9 @@ app.get("/api/v1/posts", (request, response) => {
 });
 app.delete('/api/v1/profile', (req, res) => {
     res.send('profile deleted')
+})
+app.put('/api/v1/profile', (req, res) => {
+    res.send('profile updated')
 })
 
 app.listen(PORT, () => {

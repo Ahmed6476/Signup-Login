@@ -2,16 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+// import Signup from './components/signup';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter as Router
 } from "react-router-dom";
 
+import Signup from "./components/signup/index"
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <App/> 
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

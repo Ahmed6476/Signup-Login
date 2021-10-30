@@ -15,7 +15,7 @@ import { Button, Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
 import Login from "./components/login/index"
 import Signup from "./components/signup/index"
-import Dashboard from "./components/dashboard/index"
+import Dashboard from "./components/dashboard/dashborad"
 
 
 function App() {
@@ -24,24 +24,24 @@ function App() {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      {/* <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand href="#home">React Login project</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link onClick={() => { history.push("/") }}>Dashboard</Nav.Link>
+              <Nav.Link onClick={() => { history.push("/dashborad") }}>Dashboard</Nav.Link>
               <Nav.Link onClick={() => { history.push("/login") }}>Login</Nav.Link>
-              <Nav.Link onClick={() => { history.push("/signup") }}>Signup</Nav.Link>
+              <Nav.Link onClick={() => { history.push("/") }}>Signup</Nav.Link>
 
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
+      </Navbar> */}
 
 
       <Switch>
-        <Route path="/login">
+        <Route exact path="/">
           <Login />
         </Route>
 
@@ -49,7 +49,7 @@ function App() {
           <Signup />
         </Route>
 
-        <Route exact path="/">
+        <Route path="/dashboard">
           <Dashboard />
         </Route>
 

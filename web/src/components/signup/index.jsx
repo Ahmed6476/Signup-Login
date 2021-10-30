@@ -20,7 +20,7 @@ const validationSchema = yup.object({
     name: yup
         .string('Enter your name')
         .required('Name is required'),
-        address: yup
+    address: yup
         .string('Enter your name')
         .required('Name is required'),
     email: yup
@@ -49,19 +49,20 @@ function Signup() {
                 name: values.name,
                 email: values.email,
                 password: values.password,
-                address : values.address
+                address: values.address
             })
                 .then((res) => {
                     console.log("res: ", res.data);
                     if (values.email) {
-                        history.push("/login")
+                        history.push("/")
                     }
                 })
         }
     });
 
     return (
-        <div className='center' style={{ margin: "2rem" }}>
+
+        <div className='center'>
             <h1>Signup page</h1>
 
             <div className='main_div'>
@@ -124,12 +125,17 @@ function Signup() {
                             <label>Password</label>
                         </div>
                         <button className='button'>Signup</button>
-
+                        <div></div>
+                        <div class="link">
+                            Alredy has account? <a href='' onClick={() => { history.push("/") }}>Login</a>
+                        </div>
                     </Stack>
                 </form>
 
             </div>
+
         </div>
+        
     );
 }
 export default Signup;
