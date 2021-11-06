@@ -5,6 +5,7 @@ const path = require('path')
 const mongoose = require('mongoose');
 const cors = require("cors");
 const User = require('./userSchema');
+const postModel = require("./titleSchema");
 const bcrypt = require('bcryptjs');
 mongoose.connect('mongodb+srv://ahmed672:Samsung123@cluster0.f1scc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
@@ -14,7 +15,7 @@ app.use(cors(["localhost:5000", "localhost:3000"]))
 app.use(express.json())
 app.use('/', express.static(path.join(__dirname, 'web/build')))
 app.use('/signup', express.static(path.join(__dirname, 'web/build')))
-app.use('/dashborad', express.static(path.join(__dirname, 'web/build')))
+app.use('/dashboard', express.static(path.join(__dirname, 'web/build')))
 
 
 app.get("/**", (req, res, next) => {
